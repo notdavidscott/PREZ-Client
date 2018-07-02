@@ -18,20 +18,26 @@ app.set('port', process.env.PORT || 3000);
 const sequelize = new Sequelize('Clients', 'David', null, {
     host: 'localhost',
     dialect: 'sqlite',
-    storage: '/Users/DavidScottPerez/Desktop/CODING!/Form-B-Demo1/FormBDataBase.sqlite'
+    storage: '/Users/DavidScottPerez/Desktop/CODING!/PREZ-Client/PREZ-ClientDB.sqlite'
 }); //end
 
 //start models
-/*
-const Form = sequelize.define(
-    'Form',
+
+const Clients = sequelize.define(
+    'Clients',
     {
-        FormId: {
+        ClientId: {
             type: Sequelize.INTEGER,
             autoIncrement: true, 
             primaryKey: true
         },
-        Name: Sequelize.STRING,
+        LastName: Sequelize.STRING,
+        FirstName: Sequelize.STRING,
+        PhoneNumber: Sequelize.STRING, 
+        Email: Sequelize.STRING,
+        Address: Sequelize.STRING, 
+        ZipCode: Sequelize.INTEGER, 
+        State: Sequelize.STRING
     },
     {
         freezeTableName: true, 
@@ -40,18 +46,30 @@ const Form = sequelize.define(
 );
 
 //end models
-*/
+
 //display page
 app.get('/', (req, res) => {
     res.render('home');
 });
 
+app.get('/login', (request, response) => {
+    response.render('login');
+});
+
 app.get('/allClients', (req, res) => {
-    res.render('allClients');
+
+    Clients.findAll({
+    }).then(Clients => {
+        res.render('allClients', {Clients});
+    });
 });
 
 app.get('/newClient', (request, response) => {
     response.render('newClient');
+});
+
+app.get('/success', (request, response) => {
+    response.render('success');
 });
 
 app.use((req, res) => {

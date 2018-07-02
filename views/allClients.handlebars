@@ -9,3 +9,37 @@
   </li>
 </ul>
          </nav>
+
+         <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Last Name</th>
+      <th scope="col">First Name</th>
+      <th scope="col">Phone Number</th>
+      <th scope="col">Email</th>
+      <th scope="col">Address</th>
+      <th scope="col">ZipCode</th>
+      <th scope="col">State</th>
+
+    </tr>
+  </thead>
+  <tbody>
+
+       {{#each Clients}}
+    <tr>
+      <td name="LastName">{{this.LastName}}</td>
+      <td name="FirstName">{{this.FirstName}}</td>
+      <td name="PhoneNumber">{{this.PhoneNumber}}</td>
+      <td name="Email">{{this.Email}}</td>
+      <td name="Address">{{this.Address}}</td>
+      <td name="ZipCode">{{this.ZipCode}}</td>
+      <td name="State">{{this.State}}</td>
+      {{/each}}
+
+    </tr>
+    
+  </tbody>
+</table>
+</div>
+
+<br>
